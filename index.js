@@ -9,28 +9,41 @@ window.onload = () => {
         markers: [],
         counter: 0,
         prefs: {
-          osaka: "大阪府"
+          osaka: "大阪府",
+          tokyo: "東京都",
+          kanagawa: "神奈川県"
         },
         districts: {
-          osaka: [{ en: "osaka", ja: "大阪市", wards: wards.osaka }]
+          osaka: [{ en: "osaka", ja: "大阪市", wards: wards.osaka }],
+          tokyo: [{ en: "tokyo23", ja: "23区", wards: wards.tokyo23 }],
+          kanagawa: [{ en: "yokohama", ja: "横浜市", wards: wards.yokohama }]
         },
         cityPlaces: null,
         selectedPref: "osaka",
-        selectedCity: { en: "osaka", ja: "大阪市" },
+        selectedCity: { en: "osaka", ja: "大阪市", wards: wards.tokyo23 },
         selectedWard: { en: "chuo", ja: "中央区" },
-        targetWard: "chuo"
+        targetWard: "chuo",
+        source: {}
       };
     },
     methods: {
-      showPlaces: async function (city) {
+      showPlaces: async function (city, prefecture) {
         this.selectedCity = city;
+        if (prefecture) {
+          this.selectedPref = prefecture;
+          this.targetWard = wards[city.en][0].value;
+          await this.downloadData();
+          if (!this.places) {
+            return false;
+          }
+        }
+
         const { text, value } = wards[this.selectedCity.en].filter(
           (val, idx) => val.value === this.targetWard
         )[0];
         this.selectedWard = { en: value, ja: text };
         this.counter = 0;
         this.cityPlaces = null;
-        this.places = null;
         for (let m of this.markers) {
           m.setMap(null);
         }
@@ -50,10 +63,7 @@ window.onload = () => {
           }
         );
 
-        await this.downloadData();
-        if (!this.places) {
-          return false;
-        }
+        this.addExtraInfoToPlaces();
         this.cityPlaces = await this.places.filter((place) => {
           return (
             this.selectedCity.en + this.selectedWard.en ===
@@ -72,7 +82,11 @@ window.onload = () => {
         const infoWindow = new google.maps.InfoWindow({
           content:
             "<h4>" +
+            "<a href='//www.google.com/maps/search/?api=1&query=" +
+            encodeURI(place.address + "," + place.facility_name) +
+            "'>" +
             place.facility_name +
+            "</a>" +
             "</h4>" +
             (place.facility_kana ? place.facility_kana : "") +
             "<br/>" +
@@ -94,7 +108,15 @@ window.onload = () => {
                 // Do not render to info window for these items
                 return acc;
               }
-              return acc + placeItems[key] + ":" + val + "<br/>";
+              return (
+                acc +
+                "<span class='font-weight-light'>" +
+                placeItems[key] +
+                "</span>" +
+                "&nbsp;<span class='font-weight-bold'>" +
+                val +
+                "</span><br/>"
+              );
             }, [])
         });
 
@@ -145,13 +167,20 @@ window.onload = () => {
         for (let place of this.places) {
           // if (counter++ > 10) break;
           place.city_en = this.selectedCity.en;
-          if (this.selectedCity.ja + this.selectedWard.ja === place.ward_name) {
+          if (
+            (this.selectedCity.en === "tokyo23"
+              ? "東京都"
+              : this.selectedCity.ja) +
+              this.selectedWard.ja ===
+            place.ward_name
+          ) {
             place.ward_en = this.selectedWard.en;
           }
         }
       },
       downloadData: async function () {
-        await fetch(sources[this.selectedCity.en], {
+        this.source = sources[this.selectedCity.en];
+        await fetch(sources[this.selectedCity.en].data, {
           method: "get",
           headers: {
             "content-type": "text/csv;charset=UTF-8"
@@ -165,7 +194,6 @@ window.onload = () => {
           })
           .then((csvData) => {
             this.places = this.extractCsvToJson(csvData);
-            this.addExtraInfoToPlaces();
             console.debug(this.places[0]);
           });
       }
@@ -176,7 +204,7 @@ window.onload = () => {
         zoom: 14
       });
       this.geocoder = new google.maps.Geocoder();
-      this.showPlaces(this.selectedCity);
+      this.showPlaces(this.selectedCity, this.selectedPref);
     }
   });
 };

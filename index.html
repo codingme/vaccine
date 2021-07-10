@@ -62,20 +62,22 @@
             ><b-badge v-text="prefs[selectedPref]"></b-badge>
           </template>
           <b-dd-group
-            v-for="district in districts"
-            :header="prefs[selectedCity.en]"
+            v-for="(district, key) in districts"
+            :header="prefs[key]"
           >
             <b-dd-item-btn
               v-for="city in district"
-              @click="showPlaces(city)"
+              @click="showPlaces(city, key)"
               :active="selectedCity.en === city.en"
             >
               <span v-text="city.ja"></span>
             </b-dd-item-btn>
+            <b-dropdown-divider></b-dropdown-divider>
           </b-dd-group>
         </b-dd>
       </div>
       <div>
+        <div style="display: inline-block;">
         <template>
           <div>
             <b-btn v-b-toggle.sidebar-wards
@@ -95,7 +97,7 @@
                 <div class="px-3 py-2">
                   <b-radio-group
                     v-model="targetWard"
-                    :options="districts[selectedPref].filter((val, idx) => val.en === selectedCity.en)[0].wards"
+                    :options="districts[selectedPref].filter((val, idx) => selectedCity.en === val.en)[0].wards"
                     @change="hide();showPlaces(selectedCity);"
                     buttons
                     stacked
@@ -106,12 +108,20 @@
           </div>
         </template>
       </div>
+      <div style="display: inline-block;">
+        <a href="#" v-text="source.desc" v-if="!source.link">データソースはこちら（行政整備済み分）</a>
+        <a :href="source.link" target="_blank" v-text="source.desc" v-if="source.link">データソースはこちら（行政整備済み分）</a>
+      </div>
+      </div>
       <div>
         <b-alert show>
           <small class="text-light bg-dark">最新情報は各地までお問合せ</small>
-          <span
-            v-text="!cityPlaces || (cityPlaces && counter === cityPlaces.length) ? 'ロード完了:' : 'ロード中:'"
-          ></span>
+          <span v-if="!cityPlaces || (cityPlaces && counter === cityPlaces.length)">
+            <b-icon icon="check-circle-fill"></b-icon>
+          </span>
+          <span v-else>
+              <b-icon icon="arrow-counterclockwise" animation="spin-reverse-pulse"></b-icon>
+          </span>
           <span
             v-text="cityPlaces ? counter + '/' + cityPlaces.length : '0'"
             class="text-danger"
