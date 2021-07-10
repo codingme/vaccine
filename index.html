@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0,
+    user-scalable=no, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>新型コロナワクチン個別接種にかかる取扱医療機関</title>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="//fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="//unpkg.com/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="//unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.css"
+    />
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="//unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.js"></script>
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="//unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue-icons.min.js"></script>
+    <script src="./dataSource.js"></script>
+    <script src="./jsonKeyMapping.js"></script>
+    <script src="./index.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZBVTN12HLZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag('config', 'G-ZBVTN12HLZ');
+    </script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div style="display: inline-block;">
+        <h2>コロナ個別接種</h1>
+      </div>
+      <div style="display: inline-block;">
+        <b-dd>
+          <template #button-content>
+            <span v-text="selectedCity.ja"></span
+            ><b-badge v-text="prefs[selectedPref]"></b-badge>
+          </template>
+          <b-dd-group
+            v-for="district in districts"
+            :header="prefs[selectedCity.en]"
+          >
+            <b-dd-item-btn
+              v-for="city in district"
+              @click="showPlaces(city)"
+              :active="selectedCity.en === city.en"
+            >
+              <span v-text="city.ja"></span>
+            </b-dd-item-btn>
+          </b-dd-group>
+        </b-dd>
+      </div>
+      <div>
+        <template>
+          <div>
+            <b-btn v-b-toggle.sidebar-wards
+              ><b-icon icon="chevron-double-left" animation="cylon"></b-icon
+              >所在区<b-badge v-text="selectedWard.ja"></b-badge
+            ></b-btn>
+            <b-sidebar
+              id="sidebar-wards"
+              no-header
+              width="10em"
+              bg-variant="dark"
+              text-variant="light"
+              shadow
+            >
+              <template #default="{ hide }">
+                <h4 v-text="selectedWard.ja"></h4>
+                <div class="px-3 py-2">
+                  <b-radio-group
+                    v-model="targetWard"
+                    :options="districts[selectedPref].filter((val, idx) => val.en === selectedCity.en)[0].wards"
+                    @change="hide();showPlaces(selectedCity);"
+                    buttons
+                    stacked
+                  ></b-radio-group>
+                </div>
+              </template>
+            </b-sidebar>
+          </div>
+        </template>
+      </div>
+      <div>
+        <b-alert show>
+          <small class="text-light bg-dark">最新情報は各地までお問合せ</small>
+          <span
+            v-text="!cityPlaces || (cityPlaces && counter === cityPlaces.length) ? 'ロード完了:' : 'ロード中:'"
+          ></span>
+          <span
+            v-text="cityPlaces ? counter + '/' + cityPlaces.length : '0'"
+            class="text-danger"
+          ></span>
+          場所
+        </b-alert>
+      </div>
+    </div>
+    <hr />
+    <div id="map" style="width: 100%; height: 380px;"></div>
+  </body>
+  <footer>
+    <p class="lead">コロナを乗り越えよう</p>
+    <p class="text-light bg-dark">
+      ありがとうTO：
+      <a href="//jbm-co.jp" target="_blank"
+        ><span class="font-weight-bold">JBM</span></a
+      >
+      (ドメインのご提供)
+    </p>
+  </footer>
+  <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyARyB66lHiyuW8S_eQgrhWsQIvBNxkAvbQ&language=ja&region=JP"></script>
+</html>
