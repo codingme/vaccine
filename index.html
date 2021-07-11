@@ -53,7 +53,7 @@
   <body>
     <div id="app">
       <div style="display: inline-block;">
-        <h2>コロナ個別接種</h1>
+        <h2>ｺﾛﾅﾜｸﾁﾝ個別接種</h1>
       </div>
       <div style="display: inline-block;">
         <b-dd>
@@ -78,11 +78,11 @@
       </div>
       <div>
         <div style="display: inline-block;">
-        <template>
+        <template v-if="selectedCity.wards">
           <div>
             <b-btn v-b-toggle.sidebar-wards
               ><b-icon icon="chevron-double-left" animation="cylon"></b-icon
-              >所在区<b-badge v-text="selectedWard.ja"></b-badge
+              >対象地区<b-badge v-text="selectedWard.ja"></b-badge
             ></b-btn>
             <b-sidebar
               id="sidebar-wards"
@@ -109,8 +109,10 @@
         </template>
       </div>
       <div style="display: inline-block;">
-        <a href="#" v-text="source.desc" v-if="!source.link">データソースはこちら（行政整備済み分）</a>
-        <a :href="source.link" target="_blank" v-text="source.desc" v-if="source.link">データソースはこちら（行政整備済み分）</a>
+        <span v-text="source.desc + '情報'" v-if="!source.link">データソースはこちら（行政整備済み分）</span>
+        <a :href="source.link" target="_blank" v-if="source.link">{{source.desc}}情報
+          <b-icon icon="box-arrow-up-right"></b-icon>
+        </a>
       </div>
       </div>
       <div>

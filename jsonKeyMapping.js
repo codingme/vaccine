@@ -45,6 +45,11 @@ const wards = {
   tokyo23: [
     { text: "中央区", value: "chuo" },
     { text: "千代田区", value: "chiyoda" },
+    { text: "台東区", value: "taito" },
+    { text: "品川区", value: "shinagawa" },
+    { text: "江東区", value: "koto" },
+    { text: "港区", value: "minato" },
+    { text: "渋谷区", value: "shibuya" },
     { text: "新宿区", value: "shinjuku" }
   ],
   yokohama: [

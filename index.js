@@ -14,13 +14,16 @@ window.onload = () => {
           kanagawa: "神奈川県"
         },
         districts: {
-          osaka: [{ en: "osaka", ja: "大阪市", wards: wards.osaka }],
+          osaka: [
+            { en: "osaka", ja: "大阪市", wards: wards.osaka },
+            { en: "toyonaka", ja: "豊中市" }
+          ],
           tokyo: [{ en: "tokyo23", ja: "23区", wards: wards.tokyo23 }],
           kanagawa: [{ en: "yokohama", ja: "横浜市", wards: wards.yokohama }]
         },
         cityPlaces: null,
         selectedPref: "osaka",
-        selectedCity: { en: "osaka", ja: "大阪市", wards: wards.tokyo23 },
+        selectedCity: { en: "osaka", ja: "大阪市", wards: wards.osaka },
         selectedWard: { en: "chuo", ja: "中央区" },
         targetWard: "chuo",
         source: {}
@@ -31,17 +34,21 @@ window.onload = () => {
         this.selectedCity = city;
         if (prefecture) {
           this.selectedPref = prefecture;
-          this.targetWard = wards[city.en][0].value;
+          this.targetWard = wards[city.en] ? wards[city.en][0].value : "";
           await this.downloadData();
           if (!this.places) {
             return false;
           }
         }
 
-        const { text, value } = wards[this.selectedCity.en].filter(
-          (val, idx) => val.value === this.targetWard
-        )[0];
-        this.selectedWard = { en: value, ja: text };
+        if (this.targetWard) {
+          const { text, value } = wards[this.selectedCity.en].filter(
+            (val, idx) => val.value === this.targetWard
+          )[0];
+          this.selectedWard = { en: value, ja: text };
+        } else {
+          this.selectedWard = { ja: "" };
+        }
         this.counter = 0;
         this.cityPlaces = null;
         for (let m of this.markers) {
@@ -180,7 +187,7 @@ window.onload = () => {
       },
       downloadData: async function () {
         this.source = sources[this.selectedCity.en];
-        await fetch(sources[this.selectedCity.en].data, {
+        await fetch(this.source.data, {
           method: "get",
           headers: {
             "content-type": "text/csv;charset=UTF-8"
