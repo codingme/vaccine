@@ -9,17 +9,25 @@ window.onload = () => {
         markers: [],
         counter: 0,
         prefs: {
+          aichi: "愛知県",
+          hyogo: "兵庫県",
+          kanagawa: "神奈川県",
           osaka: "大阪府",
-          tokyo: "東京都",
-          kanagawa: "神奈川県"
+          saitama: "埼玉県",
+          tokyo: "東京都"
         },
         districts: {
+          aichi: [{ en: "nagoya", ja: "名古屋市", wards: wards.nagoya }],
+          hyogo: [{ en: "amagasaki", ja: "尼崎市" }],
+          kanagawa: [{ en: "yokohama", ja: "横浜市", wards: wards.yokohama }],
           osaka: [
+            { en: "hirakata", ja: "枚方市" },
             { en: "osaka", ja: "大阪市", wards: wards.osaka },
+            { en: "suita", ja: "吹田市" },
             { en: "toyonaka", ja: "豊中市" }
           ],
-          tokyo: [{ en: "tokyo23", ja: "23区", wards: wards.tokyo23 }],
-          kanagawa: [{ en: "yokohama", ja: "横浜市", wards: wards.yokohama }]
+          saitama: [{ en: "kawaguchi", ja: "川口市" }],
+          tokyo: [{ en: "tokyo23", ja: "23区", wards: wards.tokyo23 }]
         },
         cityPlaces: null,
         selectedPref: "osaka",

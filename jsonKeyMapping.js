@@ -15,7 +15,46 @@ placeItems["remark"] = "備考";
 
 // 大阪市
 placeItems["exec_start"] = "接種開始時期";
+
 const wards = {
+  nagoya: [
+    { text: "港区", value: "minato" },
+    { text: "守山区", value: "moriyama" },
+    { text: "昭和区", value: "showa" },
+    { text: "瑞穂区", value: "mizuho" },
+    { text: "西区", value: "nishi" },
+    { text: "千種区", value: "chikusa" },
+    { text: "中区", value: "naka" },
+    { text: "中川区", value: "nakagawa" },
+    { text: "中村区", value: "nakamura" },
+    { text: "天白区", value: "tempaku" },
+    { text: "東区", value: "higashi" },
+    { text: "南区", value: "minami" },
+    { text: "熱田区", value: "atsuta" },
+    { text: "北区", value: "kita" },
+    { text: "名東区", value: "meito" },
+    { text: "緑区", value: "midori" }
+  ],
+  yokohama: [
+    { text: "鶴見区", value: "tsurumi" },
+    { text: "神奈川区", value: "kanagawa" },
+    { text: "西区", value: "nishi" },
+    { text: "中区", value: "naka" },
+    { text: "南区", value: "minami" },
+    { text: "港南区", value: "konan" },
+    { text: "保土ケ谷区", value: "hodogaya" },
+    { text: "旭区", value: "asahi" },
+    { text: "磯子区", value: "isogo" },
+    { text: "金沢区", value: "kanazawa" },
+    { text: "港北区", value: "kohoku" },
+    { text: "青葉区", value: "aoba" },
+    { text: "緑区", value: "midori" },
+    { text: "都筑区", value: "tsuzuki" },
+    { text: "戸塚区", value: "totsuka" },
+    { text: "栄区", value: "sakae" },
+    { text: "泉区", value: "izumi" },
+    { text: "瀬谷区", value: "seya" }
+  ],
   osaka: [
     { text: "中央区", value: "chuo" },
     { text: "北区", value: "kita" },
@@ -51,25 +90,5 @@ const wards = {
     { text: "港区", value: "minato" },
     { text: "渋谷区", value: "shibuya" },
     { text: "新宿区", value: "shinjuku" }
-  ],
-  yokohama: [
-    { text: "鶴見区", value: "tsurumi" },
-    { text: "神奈川区", value: "kanagawa" },
-    { text: "西区", value: "nishi" },
-    { text: "中区", value: "naka" },
-    { text: "南区", value: "minami" },
-    { text: "港南区", value: "konan" },
-    { text: "保土ケ谷区", value: "hodogaya" },
-    { text: "旭区", value: "asahi" },
-    { text: "磯子区", value: "isogo" },
-    { text: "金沢区", value: "kanazawa" },
-    { text: "港北区", value: "kohoku" },
-    { text: "青葉区", value: "aoba" },
-    { text: "緑区", value: "midori" },
-    { text: "都筑区", value: "tsuzuki" },
-    { text: "戸塚区", value: "totsuka" },
-    { text: "栄区", value: "sakae" },
-    { text: "泉区", value: "izumi" },
-    { text: "瀬谷区", value: "seya" }
   ]
 };
