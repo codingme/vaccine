@@ -1,30 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
+
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0,
-    user-scalable=no, shrink-to-fit=no"
-    />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>新型コロナワクチン個別接種にかかる取扱医療機関</title>
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="//fonts.googleapis.com/icon?family=Material+Icons"
-    />
+    <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons" />
     <!-- Load required Bootstrap and BootstrapVue CSS -->
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="//unpkg.com/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    />
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="//unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.css"
-    />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.css" />
+
+    <link type="text/css" rel="stylesheet" href="./style.css" />
     <!-- Load Vue followed by BootstrapVue -->
     <script src="//unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
     <script src="//unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.js"></script>
@@ -35,10 +23,7 @@
     <script src="./index.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ZBVTN12HLZ"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBVTN12HLZ"></script>
     <script src="./analytics.js"></script>
   </head>
 
@@ -48,17 +33,14 @@
         <h2>ｺﾛﾅﾜｸﾁﾝ個別接種</h2>
       </div>
       <div style="display: inline-block;">
-        <b-dd>
+        <b-dd class="district-scrollable">
           <template #button-content>
-            <span v-text="selectedCity.ja"></span
-            ><b-badge v-text="prefs[selectedPref]"></b-badge>
+            <span v-text="selectedCity.ja"></span>
+            <b-badge v-text="prefs[selectedPref]"></b-badge>
           </template>
           <b-dd-group v-for="(district, key) in districts" :header="prefs[key]">
-            <b-dd-item-btn
-              v-for="city in district"
-              @click="showPlaces(city, key)"
-              :active="selectedCity.en === city.en"
-            >
+            <b-dd-item-btn v-for="city in district" @click="showPlaces(city, key)"
+              :active="selectedCity.en === city.en">
               <span v-text="city.ja"></span>
             </b-dd-item-btn>
             <b-dropdown-divider></b-dropdown-divider>
@@ -69,28 +51,17 @@
         <div style="display: inline-block;">
           <template v-if="selectedCity.wards">
             <div>
-              <b-btn v-b-toggle.sidebar-wards
-                ><b-icon icon="chevron-double-left" animation="cylon"></b-icon
-                >対象地区<b-badge v-text="selectedWard.ja"></b-badge
-              ></b-btn>
-              <b-sidebar
-                id="sidebar-wards"
-                no-header
-                width="10em"
-                bg-variant="dark"
-                text-variant="light"
-                shadow
-              >
+              <b-btn v-b-toggle.sidebar-wards>
+                <b-icon icon="chevron-double-left" animation="cylon"></b-icon>対象地区<b-badge v-text="selectedWard.ja">
+                </b-badge>
+              </b-btn>
+              <b-sidebar id="sidebar-wards" no-header width="10em" bg-variant="dark" text-variant="light" shadow>
                 <template #default="{ hide }">
                   <h4 v-text="selectedWard.ja"></h4>
                   <div class="px-3 py-2">
-                    <b-radio-group
-                      v-model="targetWard"
+                    <b-radio-group v-model="targetWard"
                       :options="districts[selectedPref].filter((val, idx) => selectedCity.en === val.en)[0].wards"
-                      @change="hide();showPlaces(selectedCity);"
-                      buttons
-                      stacked
-                    ></b-radio-group>
+                      @change="hide();showPlaces(selectedCity);" buttons stacked></b-radio-group>
                   </div>
                 </template>
               </b-sidebar>
@@ -98,48 +69,41 @@
           </template>
         </div>
         <div style="display: inline-block;">
-          <span v-text="source.desc + '情報'" v-if="!source.link"
-            >データソースはこちら（行政整備済み分）</span
-          >
-          <a :href="source.link" target="_blank" v-if="source.link"
-            >{{source.desc}}情報
+          <span v-text="source.desc + '情報'" v-if="!source.link">データソースはこちら（行政整備済み分）</span>
+          <b-link :href="source.link" target="_blank" v-if="source.link">{{source.desc}}情報
             <b-icon icon="box-arrow-up-right"></b-icon>
-          </a>
+          </b-link>
         </div>
         <div>
           <b-alert show>
             <small class="text-light bg-dark">最新情報は各地までお問合せ</small>
-            <span
-              v-if="!cityPlaces || (cityPlaces && counter === cityPlaces.length)"
-            >
+            <span v-if="!cityPlaces || (cityPlaces && counter === cityPlaces.length)">
               <b-icon icon="check-circle-fill"></b-icon>
             </span>
             <span v-else>
-              <b-icon
-                icon="arrow-counterclockwise"
-                animation="spin-reverse-pulse"
-              ></b-icon>
+              <b-icon icon="arrow-counterclockwise" animation="spin-reverse-pulse"></b-icon>
             </span>
-            <span
-              v-text="cityPlaces ? counter + '/' + cityPlaces.length : '0'"
-              class="text-danger"
-            ></span>
+            <span v-text="cityPlaces ? counter + '/' + cityPlaces.length : '0'" class="text-danger"></span>
             場所
           </b-alert>
         </div>
       </div>
+      <div id="map" style="width: 100%; height: 380px;"></div>
+      <footer>
+        <p class="lead text-center">
+          <b-icon icon="star-fill" animation="fade"></b-icon>
+          コロナを乗り越えよう
+          <b-icon icon="star-fill" animation="fade"></b-icon>
+        </p>
+        <p class="text-light bg-dark">
+          ありがとうTO：
+          <b-link href="//jbm-co.jp" target="_blank"><span class="font-weight-bold">JBM</span></b-link>
+          (ドメインのご提供)
+        </p>
+      </footer>
     </div>
-    <div id="map" style="width: 100%; height: 380px;"></div>
-    <footer>
-      <p class="lead">コロナを乗り越えよう</p>
-      <p class="text-light bg-dark">
-        ありがとうTO：
-        <a href="//jbm-co.jp" target="_blank"
-          ><span class="font-weight-bold">JBM</span></a
-        >
-        (ドメインのご提供)
-      </p>
-    </footer>
-    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyARyB66lHiyuW8S_eQgrhWsQIvBNxkAvbQ&language=ja&region=JP"></script>
+    <script
+      src="//maps.googleapis.com/maps/api/js?key=AIzaSyARyB66lHiyuW8S_eQgrhWsQIvBNxkAvbQ&language=ja&region=JP"></script>
   </body>
+
 </html>

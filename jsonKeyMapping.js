@@ -2,11 +2,12 @@ const placeItems = {};
 // 共通
 // placeItems["pref_name"] = "都道府県";
 // placeItems["city_name"] = "所在市";
-placeItems["ward_name"] = "所在区";
+placeItems["ward_name"] = "所在地区";
 placeItems["facility_name"] = "名称";
 placeItems["address"] = "住所";
 placeItems["lat"] = "緯度";
 placeItems["lng"] = "経度";
+placeItems["ages"] = "対象年齢層";
 placeItems["recept_as"] = "受入区分";
 placeItems["reception"] = "受付/予約";
 placeItems["workday"] = "受付時間";
@@ -58,7 +59,7 @@ const wards = {
   osaka: [
     { text: "中央区", value: "chuo" },
     { text: "北区", value: "kita" },
-    { text: "都島区", value: "Miyakojima" },
+    { text: "都島区", value: "miyakojima" },
     { text: "福島区", value: "fukushima" },
     { text: "此花区", value: "konohana" },
     { text: "西区", value: "nishi" },
@@ -80,6 +81,18 @@ const wards = {
     { text: "東住吉区", value: "higashisumiyoshi" },
     { text: "平野区", value: "hirano" },
     { text: "西成区", value: "nishinari" }
+  ],
+  saitama: [
+    { text: "中央区", value: "chuo" },
+    { text: "西区", value: "nishi" },
+    { text: "北区", value: "kita" },
+    { text: "大宮区", value: "omiya" },
+    { text: "見沼区", value: "minuma" },
+    { text: "桜区", value: "sakura" },
+    { text: "浦和区", value: "urawa" },
+    { text: "南区", value: "minami" },
+    { text: "緑区", value: "midori" },
+    { text: "岩槻区", value: "iwatsuki" }
   ],
   tokyo23: [
     { text: "中央区", value: "chuo" },

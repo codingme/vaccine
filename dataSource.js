@@ -5,6 +5,12 @@ const sources = {
     link: "//www.city.nagoya.jp/kenkofukushi/page/0000136137.html#kobetusessyu",
     desc: "名古屋市7月13日時点"
   },
+  // 千葉県
+  matsudo: {
+    data: "./data/chiba/matsudo_kobetu_20210726.csv",
+    link: "//www.city.matsudo.chiba.jp/iryoutoshi/corona_vaccine/sesshubasho.html",
+    desc: "松戸市7月26日時点"
+  },
   // 兵庫県
   amagasaki: {
     data: "./data/hyogo/amagasaki_kobetu_20210713.csv",
@@ -47,6 +53,11 @@ const sources = {
     data: "./data/saitama/kawaguchi_kobetu_20210716.csv",
     link: "//www.city.kawaguchi.lg.jp/soshiki/01090/015/33582.html",
     desc: "川口市2021年7月16日時点"
+  },
+  saitama: {
+    data: "./data/saitama/saitama_kobetu_20210716.csv",
+    link: "//www.city.saitama.jp/002/001/008/006/013/008/p078570.html#3-3-a-a",
+    desc: "さいたま市2021年7月16日時点"
   },
   // 東京都
   tokyo23: {

@@ -10,6 +10,7 @@ window.onload = () => {
         counter: 0,
         prefs: {
           aichi: "愛知県",
+          chiba: "千葉県",
           hyogo: "兵庫県",
           kanagawa: "神奈川県",
           osaka: "大阪府",
@@ -18,6 +19,7 @@ window.onload = () => {
         },
         districts: {
           aichi: [{ en: "nagoya", ja: "名古屋市", wards: wards.nagoya }],
+          chiba: [{ en: "matsudo", ja: "松戸市" }],
           hyogo: [{ en: "amagasaki", ja: "尼崎市" }],
           kanagawa: [{ en: "yokohama", ja: "横浜市", wards: wards.yokohama }],
           osaka: [
@@ -26,7 +28,10 @@ window.onload = () => {
             { en: "suita", ja: "吹田市" },
             { en: "toyonaka", ja: "豊中市" }
           ],
-          saitama: [{ en: "kawaguchi", ja: "川口市" }],
+          saitama: [
+            { en: "kawaguchi", ja: "川口市" },
+            { en: "saitama", ja: "さいたま市", wards: wards.saitama },
+          ],
           tokyo: [{ en: "tokyo23", ja: "23区", wards: wards.tokyo23 }]
         },
         cityPlaces: null,
@@ -117,7 +122,7 @@ window.onload = () => {
                   "lng",
                   "city_en",
                   "ward_en",
-                  "ward_name"
+                  // "ward_name"
                 ].includes(key)
               ) {
                 // Do not render to info window for these items
@@ -129,7 +134,7 @@ window.onload = () => {
                 placeItems[key] +
                 "</span>" +
                 "&nbsp;<span class='font-weight-bold'>" +
-                val +
+                (("ward_name" === key) ? val.replace(this.prefs[this.selectedPref], "") : val) +
                 "</span><br/>"
               );
             }, [])
@@ -186,7 +191,7 @@ window.onload = () => {
             (this.selectedCity.en === "tokyo23"
               ? "東京都"
               : this.selectedCity.ja) +
-              this.selectedWard.ja ===
+            this.selectedWard.ja ===
             place.ward_name
           ) {
             place.ward_en = this.selectedWard.en;
