@@ -18,6 +18,15 @@ placeItems["remark"] = "備考";
 placeItems["exec_start"] = "接種開始時期";
 
 const wards = {
+  fukuoka: [
+    { text: "中央区", value: "chuo" },
+    { text: "東区", value: "higashi" },
+    { text: "博多区", value: "hakata" },
+    { text: "南区", value: "minami" },
+    { text: "城南区", value: "jonan" },
+    { text: "早良区", value: "sawara" },
+    { text: "西区", value: "nishi" }
+  ],
   nagoya: [
     { text: "港区", value: "minato" },
     { text: "守山区", value: "moriyama" },
@@ -55,6 +64,12 @@ const wards = {
     { text: "栄区", value: "sakae" },
     { text: "泉区", value: "izumi" },
     { text: "瀬谷区", value: "seya" }
+  ],
+  okayama: [
+    { text: "北区", value: "kita" },
+    { text: "中区", value: "naka" },
+    { text: "東区", value: "higashi" },
+    { text: "南区", value: "minami" }
   ],
   osaka: [
     { text: "中央区", value: "chuo" },

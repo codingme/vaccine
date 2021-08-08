@@ -1,4 +1,10 @@
 const sources = {
+  // 福岡県
+  fukuoka: {
+    data: "./data/fukuoka/fukuoka_kobetu_20210804.csv",
+    link: "//www.city.fukuoka.lg.jp/hofuku/coronavaccine/wakutin.html",
+    desc: "福岡市8月4日時点"
+  },
   // 愛知県
   nagoya: {
     data: "./data/aichi/nagoya_kobetu_20210713.csv",
@@ -24,6 +30,12 @@ const sources = {
     link:
       "//www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/vaccine/vaccine-portal/kobetsu-other.html",
     desc: "横浜市７月１日時点"
+  },
+  // 岡山県
+  okayama: {
+    data: "./data/okayama/okayama_kobetu_20210728.csv",
+    link: "//www.city.okayama.jp/0000030645.html",
+    desc: "岡山市2021年7月28日時点"
   },
   // 大阪府
   hirakata: {

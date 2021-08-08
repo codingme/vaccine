@@ -10,9 +10,11 @@ window.onload = () => {
         counter: 0,
         prefs: {
           aichi: "愛知県",
+          fukuoka: "福岡県",
           chiba: "千葉県",
           hyogo: "兵庫県",
           kanagawa: "神奈川県",
+          okayama: "岡山県",
           osaka: "大阪府",
           saitama: "埼玉県",
           tokyo: "東京都"
@@ -20,8 +22,10 @@ window.onload = () => {
         districts: {
           aichi: [{ en: "nagoya", ja: "名古屋市", wards: wards.nagoya }],
           chiba: [{ en: "matsudo", ja: "松戸市" }],
+          fukuoka: [{ en: "fukuoka", ja: "福岡市", wards: wards.fukuoka }],
           hyogo: [{ en: "amagasaki", ja: "尼崎市" }],
           kanagawa: [{ en: "yokohama", ja: "横浜市", wards: wards.yokohama }],
+          okayama: [{ en: "okayama", ja: "岡山市", wards: wards.okayama }],
           osaka: [
             { en: "hirakata", ja: "枚方市" },
             { en: "osaka", ja: "大阪市", wards: wards.osaka },
@@ -69,10 +73,21 @@ window.onload = () => {
         }
         this.markers = [];
 
+        // for those latlnt ambiguous
+        let yakusyoList = [];
+        switch (this.selectedCity.en) {
+          case "fukuoka":
+            yakusyoList = ["sawara", "nishi"];
+            break;
+          case "okayama":
+            yakusyoList = ["kita", "naka", "higashi", "minami"];
+            break;
+          default:
+        }
         this.geocoder.geocode(
           {
             address:
-              this.selectedWard.ja +
+              this.selectedWard.ja + (yakusyoList.includes(this.targetWard) ? "役所" : "") +
               "," +
               this.selectedCity.ja +
               "," +
