@@ -23,7 +23,10 @@ window.onload = () => {
           aichi: [{ en: "nagoya", ja: "名古屋市", wards: wards.nagoya }],
           chiba: [{ en: "matsudo", ja: "松戸市" }],
           fukuoka: [{ en: "fukuoka", ja: "福岡市", wards: wards.fukuoka }],
-          hyogo: [{ en: "amagasaki", ja: "尼崎市" }],
+          hyogo: [
+            { en: "amagasaki", ja: "尼崎市" },
+            { en: "kobe", ja: "神戸市", wards: wards.kobe }
+          ],
           kanagawa: [{ en: "yokohama", ja: "横浜市", wards: wards.yokohama }],
           okayama: [{ en: "okayama", ja: "岡山市", wards: wards.okayama }],
           osaka: [
@@ -78,6 +81,9 @@ window.onload = () => {
         switch (this.selectedCity.en) {
           case "fukuoka":
             yakusyoList = ["sawara", "nishi"];
+            break;
+          case "kobe":
+            yakusyoList = ["chuo", "nada", "nishi"];
             break;
           case "okayama":
             yakusyoList = ["kita", "naka", "higashi", "minami"];

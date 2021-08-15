@@ -5,6 +5,7 @@ const placeItems = {};
 placeItems["ward_name"] = "所在地区";
 placeItems["facility_name"] = "名称";
 placeItems["address"] = "住所";
+placeItems["postal_code"] = "郵便番号";
 placeItems["lat"] = "緯度";
 placeItems["lng"] = "経度";
 placeItems["ages"] = "対象年齢層";
@@ -18,15 +19,6 @@ placeItems["remark"] = "備考";
 placeItems["exec_start"] = "接種開始時期";
 
 const wards = {
-  fukuoka: [
-    { text: "中央区", value: "chuo" },
-    { text: "東区", value: "higashi" },
-    { text: "博多区", value: "hakata" },
-    { text: "南区", value: "minami" },
-    { text: "城南区", value: "jonan" },
-    { text: "早良区", value: "sawara" },
-    { text: "西区", value: "nishi" }
-  ],
   nagoya: [
     { text: "港区", value: "minato" },
     { text: "守山区", value: "moriyama" },
@@ -44,6 +36,25 @@ const wards = {
     { text: "北区", value: "kita" },
     { text: "名東区", value: "meito" },
     { text: "緑区", value: "midori" }
+  ],
+  fukuoka: [
+    { text: "中央区", value: "chuo" },
+    { text: "東区", value: "higashi" },
+    { text: "博多区", value: "hakata" },
+    { text: "南区", value: "minami" },
+    { text: "城南区", value: "jonan" },
+    { text: "早良区", value: "sawara" },
+    { text: "西区", value: "nishi" }
+  ],
+  kobe: [
+    { text: "中央区", value: "chuo" },
+    { text: "長田区", value: "nagata" },
+    { text: "須磨区", value: "suma" },
+    { text: "垂水区", value: "tarumi" },
+    { text: "東灘区", value: "higashinada" },
+    { text: "灘区", value: "nada" },
+    { text: "西区", value: "nishi" },
+    { text: "兵庫区", value: "hyogo" }
   ],
   yokohama: [
     { text: "鶴見区", value: "tsurumi" },
@@ -117,6 +128,9 @@ const wards = {
     { text: "江東区", value: "koto" },
     { text: "港区", value: "minato" },
     { text: "渋谷区", value: "shibuya" },
-    { text: "新宿区", value: "shinjuku" }
+    { text: "新宿区", value: "shinjuku" },
+    { text: "目黒区", value: "meguro" },
+    { text: "豊島区", value: "toshima" },
+    { text: "荒川区", value: "arakawa" }
   ]
 };

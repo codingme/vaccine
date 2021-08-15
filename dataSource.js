@@ -24,6 +24,12 @@ const sources = {
       "//www.city.amagasaki.hyogo.jp/kurashi/kenko/kansensyo/1024145/1025559.html",
     desc: "尼崎市7月13日時点"
   },
+  kobe: {
+    data: "./data/hyogo/kobe_kobetu_20210806.csv",
+    link:
+      "//www.city.kobe.lg.jp/a73576/coronavaccine_iryokikanichiran.html",
+    desc: "神戸市8月6日時点"
+  },
   // 神奈川県
   yokohama: {
     data: "./data/kanagawa/yokohama_kobetu_20210705.csv",
