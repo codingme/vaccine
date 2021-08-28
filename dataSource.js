@@ -11,6 +11,11 @@ const sources = {
     link: "//www.city.nagoya.jp/kenkofukushi/page/0000136137.html#kobetusessyu",
     desc: "名古屋市7月13日時点"
   },
+  nisshin: {
+    data: "./data/aichi/nisshin_kobetu_20210801.csv",
+    link: "//www.city.nisshin.lg.jp/department/kenko/kenko/6/2/2/news/1/11778.html",
+    desc: "日進市8月1日時点"
+  },
   // 千葉県
   matsudo: {
     data: "./data/chiba/matsudo_kobetu_20210726.csv",
@@ -44,6 +49,11 @@ const sources = {
     desc: "岡山市2021年7月28日時点"
   },
   // 大阪府
+  higashiosaka: {
+    data: "./data/osaka/higashiosaka_kobetu_20210819.csv",
+    link: "//www.city.higashiosaka.lg.jp/0000030178.html",
+    desc: "東大阪市2021年8月19日時点"
+  },
   hirakata: {
     data: "./data/osaka/hirakata_kobetu_20210708.csv",
     link: "//www.city.hirakata.osaka.jp/0000034803.html",
@@ -59,6 +69,12 @@ const sources = {
     link:
       "//www.city.suita.osaka.jp/home/soshiki/div-kenkoiryo/hokencjigyo/_107101/_107393.html",
     desc: "吹田市2021年7月16日時点"
+  },
+  takatsuki: {
+    data: "./data/osaka/takatsuki_kobetu_20210821.csv",
+    link:
+      "http://www.city.takatsuki.osaka.jp/kakuka/kenkouf/kenkouir/gyomuannai/kenkoukikikanri/kenkoukikikanritaisakuhonnbu/corona_vaccine/vaccine_iryokikan.html",
+    desc: "高槻市2021年8月21日時点"
   },
   toyonaka: {
     data: "./data/osaka/toyonaka_kobetu_20210710.csv",

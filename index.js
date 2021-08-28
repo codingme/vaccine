@@ -20,7 +20,10 @@ window.onload = () => {
           tokyo: "東京都"
         },
         districts: {
-          aichi: [{ en: "nagoya", ja: "名古屋市", wards: wards.nagoya }],
+          aichi: [
+            { en: "nagoya", ja: "名古屋市", wards: wards.nagoya },
+            { en: "nisshin", ja: "日進市" }
+          ],
           chiba: [{ en: "matsudo", ja: "松戸市" }],
           fukuoka: [{ en: "fukuoka", ja: "福岡市", wards: wards.fukuoka }],
           hyogo: [
@@ -30,9 +33,11 @@ window.onload = () => {
           kanagawa: [{ en: "yokohama", ja: "横浜市", wards: wards.yokohama }],
           okayama: [{ en: "okayama", ja: "岡山市", wards: wards.okayama }],
           osaka: [
+            { en: "higashiosaka", ja: "東大阪市" },
             { en: "hirakata", ja: "枚方市" },
             { en: "osaka", ja: "大阪市", wards: wards.osaka },
             { en: "suita", ja: "吹田市" },
+            { en: "takatsuki", ja: "高槻市" },
             { en: "toyonaka", ja: "豊中市" }
           ],
           saitama: [
