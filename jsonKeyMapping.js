@@ -131,6 +131,8 @@ const wards = {
     { text: "新宿区", value: "shinjuku" },
     { text: "目黒区", value: "meguro" },
     { text: "豊島区", value: "toshima" },
-    { text: "荒川区", value: "arakawa" }
+    { text: "荒川区", value: "arakawa" },
+    { text: "杉並区", value: "suginami" },
+    { text: "北区", value: "kita" },
   ]
 };
